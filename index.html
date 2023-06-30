@@ -2,21 +2,53 @@
 <html>
 <head>
   <title>Weather Hub</title>
-  <link rel="stylesheet" type="text/css" href="./asset/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="./Assets/css/styles.css">
 </head>
 <body>
-  <h1>Weather Hub</h1>
-
-  <h2>search for a City:</h2>
-  <form id="search-form">
-    <input type="text" id="city-input" placeholder="Melbourne"> <br>
-    <button type="submit">Search</button>
-  </form>
-
+   <h1>Weather Hub</h1>
+<main>
+  <div id="sidebar">
+    <h2>search for a City:</h2>
+    <form id="search-form">
+      <input type="text" id="city-input" placeholder="Melbourne"> <br>
+      <button type="submit">Search</button>
+    </form>
+    <div id="major-cities">
+      <div class="cities">melbourne</div>
+      <div class="cities">Sydney</div>
+      <div class="cities">Brisbane</div>
+      <div class="cities">Perth</div>
+      <div class="cities">Adelaide</div>
+      <div class="cities">Gold Coast</div>
+      <div class="cities">Newcastle</div>
+      <div class="cities">Canberrra</div>
+    </div>
+   
+  </div>
+ 
   <div id="weather-results">
-    <!-- Weather information will be displayed here -->
+    <div id="selected-city">
+      <div id="selected-city-name">Melbourne</div>
+      <div id="temp">Temp</div>
+      <div id="wind">Wind</div>
+      <div id="Humidity">Humidity</div>
+
+    </div>
+    <div id="5-day-forcast">
+      <p>5-Day Forecast:</p>
+      <div id="days">
+        <div>day1</div>
+        <div>day2</div>
+        <div>day3</div>
+        <div>day4</div>
+        <div>day5</div>
+      </div>
+    </div>
   </div>
 
-  <script src="./asset/js/script.js"></script>
+</main>
+
+
+  <script src="./Assets/js/script.js"></script>
 </body>
 </html>

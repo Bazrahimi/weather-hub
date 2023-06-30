@@ -1,5 +1,5 @@
 /* Apply a CSS reset to remove default margin and padding */
-html, body {
+html{
   margin: 0;
   padding: 0;
 }
@@ -60,10 +60,5 @@ h1 {
 /* Apply additional styling for selected-city and 5-day-forcast */
 #selected-city {
 
-  padding: 10px;
-}
-
-#5-day-forcast {
-  background-color: lightgreen;
   padding: 10px;
 }
