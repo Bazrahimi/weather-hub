@@ -6,6 +6,7 @@ const cityPlusDate = document.getElementById('cityPlusDate');
 const tempDiv = document.getElementById('temp');
 const windDiv = document.getElementById('wind');
 const humidityDiv = document.getElementById('humidity');
+const forcastDiv = document.getElementById('days');
 
 // Add API Key
 const apiKey = "9d289b87c3721d7d57fae4326e6dad30";
@@ -20,6 +21,7 @@ function fetchApi(latitude, longitude) {
     .then(function(data) {
       console.log(data);
       renderWeatherData(data);
+      renderForcastData(data);
     });
 }
 
@@ -35,7 +37,7 @@ function renderWeatherData(data) {
   const temperature = Math.round(degreeCelsius);
 
   //convert Wind Meters per Sec to Km/h and round off
-  const windSpeed = Math.round (windSpeedMetersPerSec * 3.6);
+  const windSpeed = Math.round(windSpeedMetersPerSec * 3.6);
 
 
   const currentDate = new Date().toLocaleDateString();
@@ -48,6 +50,26 @@ function renderWeatherData(data) {
   humidityDiv.textContent = `Humidity: ${humidity} %`;
 
   selectedCityWeather.style.display = "block";
+}
+
+//function to render 5 Days forecast
+function renderForcastData(data) {
+  const forcastList = data.list;
+  forcastDiv.innerHTML = '';
+
+  for (let i = 0; i < forecastList.length; i++) {
+    const forecastData = forecastList[i];
+    const dateTime = forecastData.dt_txt;
+    const kelvin = forecastData.main.temp;
+
+    // Convert Kelvin to Degree Celsius and round off
+    const degreeCelsius = kelvin - 273.15;
+    const temperature = Math.round(degreeCelsius);
+
+    const forecastItem = document.createElement("div");
+    forecastItem.textContent = `${dateTime}: ${temperature}\u00B0C`;
+    forcastDiv.appendChild(forecastItem);
+  }
 }
 
 searchBtn.addEventListener('click', function() { 
