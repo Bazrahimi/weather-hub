@@ -2,53 +2,69 @@
 <html>
 <head>
   <title>Weather Hub</title>
-  <link rel="stylesheet" type="text/css" href="./Assets/css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
 </head>
 <body>
-   <h1>Weather Hub</h1>
-<main>
-  <div id="sidebar">
-    <h2>search for a City:</h2>
-    <form id="search-form">
-      <input type="text" id="city-input" placeholder="Melbourne"> <br>
-      <button type="submit">Search</button>
-    </form>
+   <header>
+     <h1>Weather Hub</h1>
+   </header>
+
+   <section>
+    <h2>Search for a City:</h2>
+    <div><input id="cityInput" type="text" placeholder="Melbourne"></div>
+    <div>
+      <button>Search</button>
+    </div>
     <div id="major-cities">
-      <div class="cities">melbourne</div>
-      <div class="cities">Sydney</div>
-      <div class="cities">Brisbane</div>
-      <div class="cities">Perth</div>
-      <div class="cities">Adelaide</div>
-      <div class="cities">Gold Coast</div>
-      <div class="cities">Newcastle</div>
-      <div class="cities">Canberrra</div>
+      <div class="city">Melbourne</div>
+      <div class="city">Sydney</div>
+      <div class="city">Brisbane</div>
+      <div class="city">Perth</div>
+      <div class="city">Adelaide</div>
+      <div class="city">Gold Coast</div>
+      <div class="city">Newcastle</div>
+      <div class="city">Canberra</div>
     </div>
-   
-  </div>
+   </section>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
-  <div id="weather-results">
-    <div id="selected-city">
-      <div id="selected-city-name">Melbourne</div>
-      <div id="temp">Temp</div>
-      <div id="wind">Wind</div>
-      <div id="Humidity">Humidity</div>
+     <section id="weather-results">
+       <article id="selected-city">
+         <h2 id="selected-city-name">Melbourne</h2>
+         <div id="temp">Temperature</div>
+         <div id="wind">Wind</div>
+         <div id="humidity">Humidity</div>
+       </article>
+       <article id="five-day-forecast">
+         <h2>5-Day Forecast:</h2>
+         <div id="days">
+           <div>Day 1</div>
+           <!-- <div>Day 2</div>
+           <div>Day 3</div>
+           <div>Day 4</div>
+           <div>Day 5</div> -->
+         </div>
+       </article>
+     </section>
+   </main>
 
-    </div>
-    <div id="5-day-forcast">
-      <p>5-Day Forecast:</p>
-      <div id="days">
-        <div>day1</div>
-        <div>day2</div>
-        <div>day3</div>
-        <div>day4</div>
-        <div>day5</div>
-      </div>
-    </div>
-  </div>
-
-</main>
-
-
-  <script src="./Assets/js/script.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 </html>
