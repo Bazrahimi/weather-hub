@@ -12,58 +12,35 @@
 
    <section>
     <h2>Search for a City:</h2>
-    <div><input id="cityInput" type="text" placeholder="Melbourne"></div>
+    <div><input class="cityInput" type="text" placeholder="Melbourne"></div>
     <div>
-      <button>Search</button>
-    </div>
-    <div id="major-cities">
-      <div class="city">Melbourne</div>
-      <div class="city">Sydney</div>
-      <div class="city">Brisbane</div>
-      <div class="city">Perth</div>
-      <div class="city">Adelaide</div>
-      <div class="city">Gold Coast</div>
-      <div class="city">Newcastle</div>
-      <div class="city">Canberra</div>
+      <button id="search-button" class="search-button">Search</button>
     </div>
    </section>
 
-  
-  
+   <section id="selected-city">
+     <h4 id="selected-city-name">Melbourne</h4>
+     <h4 id="selected-city-name">Sydney</h4>
+     <h4 id="selected-city-name">Brisbane</h4>
+     <h4 id="selected-city-name">Perth</h4>
+     <h4 id="selected-city-name">Adelaide</h4>
+     <h4 id="selected-city-name">Gold Coast</h4>
+     <h4 id="selected-city-name">Newcastle</h4>
+     <h4 id="selected-city-name">Canberra</h4>
+   </section>
 
+   <section>
+    <div id="temp">Temperature</div>
+    <div id="wind">Wind</div>
+    <div id="humidity">Humidity</div>
+   </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
- 
-     <section id="weather-results">
-       <article id="selected-city">
-         <h2 id="selected-city-name">Melbourne</h2>
-         <div id="temp">Temperature</div>
-         <div id="wind">Wind</div>
-         <div id="humidity">Humidity</div>
-       </article>
-       <article id="five-day-forecast">
-         <h2>5-Day Forecast:</h2>
-         <div id="days">
-           <div>Day 1</div>
-           <!-- <div>Day 2</div>
-           <div>Day 3</div>
-           <div>Day 4</div>
-           <div>Day 5</div> -->
-         </div>
-       </article>
-     </section>
-   </main>
+   <article id="five-day-forecast">
+     <h2>5-Day Forecast:</h2>
+     <div id="days">
+       <!-- Dynamically generated forecast items will be added here -->
+     </div>
+   </article>
 
   <script src="./assets/js/script.js"></script>
 </body>
