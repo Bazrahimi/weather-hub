@@ -6,41 +6,57 @@
   <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
 </head>
 <body>
+  
    <header>
      <h1>Weather Hub</h1>
    </header>
 
-   <section>
-    <h2>Search for a City:</h2>
-    <div><input class="cityInput" type="text" placeholder="Melbourne"></div>
-    <div>
-      <button id="search-button" class="search-button">Search</button>
-    </div>
-   </section>
-
-   <section id="selected-city">
-     <h4 id="selected-city-name">Melbourne</h4>
-     <h4 id="selected-city-name">Sydney</h4>
-     <h4 id="selected-city-name">Brisbane</h4>
-     <h4 id="selected-city-name">Perth</h4>
-     <h4 id="selected-city-name">Adelaide</h4>
-     <h4 id="selected-city-name">Gold Coast</h4>
-     <h4 id="selected-city-name">Newcastle</h4>
-     <h4 id="selected-city-name">Canberra</h4>
-   </section>
-
-   <section>
-    <div id="temp">Temperature</div>
-    <div id="wind">Wind</div>
-    <div id="humidity">Humidity</div>
-   </section>
-
-   <article id="five-day-forecast">
-     <h2>5-Day Forecast:</h2>
-     <div id="days">
-       <!-- Dynamically generated forecast items will be added here -->
+   <div class="container">
+    <Div>
+      <section>
+        <h2>Search for a City:</h2>
+        <div><input class="cityInput" type="text" placeholder="Melbourne"></div>
+        <div>
+          <button id="search-button" class="search-button">Search</button>
+        </div>
+       </section>
+    
+       <section id="selected-city">
+         <h4 id="melbourneCity">Melbourne</h4>
+         <h4 id="sydneyCity">Sydney</h4>
+         <h4 id="brisbaneCity">Brisbane</h4>
+         <h4 id="perthCity">Perth</h4>
+         <h4 id="adelaideCity">Adelaide</h4>
+         <h4 id="gold-coastCity">Gold Coast</h4>
+         <h4 id="newcastleCity">Newcastle</h4>
+         <h4 id="canberraCity">Canberra</h4>
+       </section>
+     </Div>
+  
+     <div>
+      <section>
+        <div class="selected-city-weather">
+          <h5 id="cityPlusDate"></h5>
+          <div>
+            <div id="temp"></div>
+            <div id="wind"></div>
+            <div id="humidity"></div>
+          </div>
+        </div>
+       
+       </section>
+    
+       <article id="five-day-forecast">
+         <h2>5-Day Forecast:</h2>
+         <div id="days">
+           <!-- Dynamically generated forecast items will be added here -->
+         </div>
+       </article>
      </div>
-   </article>
+     
+   </div>
+
+   
 
   <script src="./assets/js/script.js"></script>
 </body>

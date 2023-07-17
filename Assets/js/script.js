@@ -1,6 +1,11 @@
 // HTML References
 const searchBtn = document.querySelector('.search-button');
 const inputEl = document.querySelector('.cityInput');
+const selectedCityWeather = document.querySelector('.selected-city-weather');
+const cityPlusDate = document.getElementById('cityPlusDate');
+const tempDiv = document.getElementById('temp');
+const windDiv = document.getElementById('wind');
+const humidityDiv = document.getElementById('humidity');
 
 // Add API Key
 const apiKey = "9d289b87c3721d7d57fae4326e6dad30";
@@ -13,6 +18,7 @@ function fetchApi(latitude, longitude) {
   fetch(url)
     .then(response => response.json())
     .then(function(data) {
+      console.log(data);
       renderWeatherData(data);
     });
 }
@@ -20,13 +26,28 @@ function fetchApi(latitude, longitude) {
 // Function to render weather data
 function renderWeatherData(data) {
   const city = data.city.name;
-  const temperature = data.list[0].main.temp;
-  const windSpeed = data.list[0].wind.speed;
+  const kelvin = data.list[0].main.temp;
+  const windSpeedMetersPerSec = data.list[0].wind.speed;
   const humidity = data.list[0].main.humidity;
-  console.log(city);
-  console.log(temperature);
-  console.log(windSpeed);
-  console.log(humidity);
+
+  //convert Kelvin to Degree Celsius and round off
+  const degreeCelsius = kelvin - 273.15;
+  const temperature = Math.round(degreeCelsius);
+
+  //convert Wind Meters per Sec to Km/h and round off
+  const windSpeed = Math.round (windSpeedMetersPerSec * 3.6);
+
+
+  const currentDate = new Date().toLocaleDateString();
+
+  cityPlusDate.textContent = `${city} (${currentDate})`;
+  tempDiv.textContent = "Temperature: " + temperature + "\u00B0C";
+
+
+  windDiv.textContent = "Wind: " + windSpeed + " km/h";
+  humidityDiv.textContent = `Humidity: ${humidity} %`;
+
+  selectedCityWeather.style.display = "block";
 }
 
 searchBtn.addEventListener('click', function() { 
@@ -48,4 +69,3 @@ searchBtn.addEventListener('click', function() {
       console.error("Error:", error);
     });
 });
-
