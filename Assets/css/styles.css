@@ -38,7 +38,7 @@ h2 {
 #search-button {
   background-color: #7457f1;
   color: white;
-  padding: 0;
+  padding: 5px;
   width: 100%;
   margin-bottom: 20px;
   cursor: pointer;
@@ -81,7 +81,7 @@ aside {
 #selected-city h4 {
   margin-bottom: 15px;
   font-size: 14px;
-  background: grey;
+  background: lightgrey;
   padding-top: 10px;
   padding-bottom: 10px;
   cursor: pointer;
@@ -110,10 +110,20 @@ aside {
 
 }
 
-.forecast-container {
+.forecast-item {
+  background-color: #02041ae7;
+  color: white;
+  width: auto;
+  padding: 20px;
+  margin: 2px;
 
-  margin: 5px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 31.33%;
+  }
 }
 
 
