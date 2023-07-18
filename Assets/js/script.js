@@ -20,7 +20,12 @@ function fetchApi(latitude, longitude) {
   fetch(url)
     .then(response => response.json())
     .then(function(data) {
-      console.log(data);
+
+      //Store latitude and Longitude in localStorage
+      localStorage.setItem('latitude', latitude);
+      localStorage.setItem('longitude', longitude);
+
+  
       renderWeatherData(data);
       renderForecastData(data);
     });
@@ -111,7 +116,7 @@ selectedCitySection.addEventListener('click', function(event) {
   if (event.target.tagName === 'H4') {
     const city = event.target.textContent;
 
-    //call apoi to get the liatiude and and logitude
+    //call api to get the latitude and longitude
     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`)
     .then(response => response.json())
     .then(function(geodata) {
@@ -145,11 +150,18 @@ searchBtn.addEventListener('click', function() {
     });
 });
 
-//set Melbourne as the default city
-// document.addEventListener('DOMContentLoaded', () => {
-//   const latitude = '-37.8142';
-//   const longitude = '144.9632';
-//   fetchApi(latitude, longitude)
-// });
+//set Melbourne as the default city if no co-ordinate exist in LocalStorage.
+document.addEventListener('DOMContentLoaded', () => {
+  //check if latitude and longitude exist and localStorage
+  const latitude = localStorage.getItem('latitude');
+  const longitude = localStorage.getItem('longitude');
 
+  if (latitude && longitude) {
+    fetchApi(latitude, longitude);
+  } else {
+      const latitude = '-37.8142';
+      const longitude = '144.9632';
+      fetchApi(latitude, longitude);
+  }
 
+});
