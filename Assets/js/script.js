@@ -127,7 +127,6 @@ selectedCitySection.addEventListener('click', function(event) {
 searchBtn.addEventListener('click', function() { 
   const city = inputEl.value;
 
-  // Perform direct geocoding API call to get latitude and longitude
   fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`)
     .then(response => response.json())
     .then(function(geodata) {
