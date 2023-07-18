@@ -7,6 +7,7 @@ const tempDiv = document.getElementById('temp');
 const windDiv = document.getElementById('wind');
 const humidityDiv = document.getElementById('humidity');
 const forecastDiv = document.getElementById('days');
+const selectedCitySection = document.getElementById('selected-city');
 
 // Add API Key
 const apiKey = "9d289b87c3721d7d57fae4326e6dad30";
@@ -80,8 +81,27 @@ function renderForecastData(data) {
   });
 }
 
+//event listener for selected-city section
+selectedCitySection.addEventListener('click', function(event) {
+  if (event.target.tagName === 'H4') {
+    const city = event.target.textContent;
+
+    //call apoi to get the liatiude and and logitude
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`)
+    .then(response => response.json())
+    .then(function(geodata) {
+      if (geodata.length > 0) {
+        const latitude = geodata[0].lat;
+        const longitude = geodata[0].lon;
+        fetchApi(latitude, longitude);
+      }
+    });
+  }
+});
+
 searchBtn.addEventListener('click', function() { 
   const city = inputEl.value;
+
   // Perform direct geocoding API call to get latitude and longitude
   fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`)
     .then(response => response.json())
@@ -89,6 +109,8 @@ searchBtn.addEventListener('click', function() {
       if (geodata.length > 0) {
         const latitude = geodata[0].lat;
         const longitude = geodata[0].lon;
+        console.log(latitude);
+        console.log(longitude);
         fetchApi(latitude, longitude);
       } else {
         console.error("Location not found");
@@ -98,3 +120,12 @@ searchBtn.addEventListener('click', function() {
       console.error("Error:", error);
     });
 });
+
+//set Melbourne as the default city
+document.addEventListener('DOMContentLoaded', () => {
+  const latitude = '-37.8142';
+  const longitude = '144.9632';
+  fetchApi(latitude, longitude)
+});
+
+
