@@ -30,13 +30,24 @@ h2 {
   margin-bottom: 10px;
 }
 
+.cityInput:hover {
+  background-color: lightblue;
+  border: 2px solid blue;
+}
+
 #search-button {
   background-color: #7457f1;
   color: white;
   padding: 0;
   width: 100%;
   margin-bottom: 20px;
+  cursor: pointer;
 }
+
+#search-button:hover {
+  color: black;
+}
+
 
 aside {
   text-align: center;
@@ -73,6 +84,16 @@ aside {
   background: grey;
   padding-top: 10px;
   padding-bottom: 10px;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+
+#selected-city h4:hover {
+  color: white;
+}
+
+#selected-city h4:active {
+  color: white;
 }
 
 .selected-city-weather {
