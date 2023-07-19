@@ -24,8 +24,7 @@ function fetchApi(latitude, longitude) {
       //Store latitude and Longitude in localStorage
       localStorage.setItem('latitude', latitude);
       localStorage.setItem('longitude', longitude);
-
-  
+      
       renderWeatherData(data);
       renderForecastData(data);
     });
@@ -41,6 +40,9 @@ function renderWeatherData(data) {
   const kelvin = data.list[0].main.temp;
   const windSpeedMetersPerSec = data.list[0].wind.speed;
   const humidity = data.list[0].main.humidity;
+
+  //Add the city name as a placeholder on inputEl
+  inputEl.placeholder = city;
 
   // Convert Kelvin to Degree Celsius and round off
   const degreeCelsius = kelvin - 273.15;
@@ -108,6 +110,7 @@ function renderForecastData(data) {
 
     // Append the forecast item element to the forecast container
     forecastDiv.appendChild(forecastItemEl);
+  
   });
 }
 
