@@ -145,7 +145,8 @@ searchBtn.addEventListener('click', function() {
         console.log(longitude);
         fetchApi(latitude, longitude);
       } else {
-        console.error("Location not found");
+        const noCityMessage = document.getElementById('noCityMessage');
+        noCityMessage.innerHTML = 'City not found!';
       }
     })
     .catch(error => {
