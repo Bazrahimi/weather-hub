@@ -43,17 +43,29 @@ function renderWeatherData(data) {
 
   //Add the city name as a placeholder on inputEl
   inputEl.placeholder = city;
+  // Push the city name to the cityNames array and save it in localStorage
+  let cityNames = JSON.parse(localStorage.getItem('cityNames')) || [];
+  cityNames.push(city);
+  localStorage.setItem('cityNames', JSON.stringify(cityNames));
 
-  //add city to seach History if it does not already exist.
+  // Retrieve the cityNames array from localStorage
+  const searchedCities = JSON.parse(localStorage.getItem('cityNames'));
+
+  // Display each searched city in the search history element.
   const searchHistory = document.querySelector('.searchHistory');
-  const searchHistoryEl = document.createElement('H4');
-  const cityName = Array.from(searchHistoryEl.querySelectorAll('H4')).map(el => el.textContent);
 
-  if (!cityName.includes(city)) {
-    searchHistoryEl.textContent = city;
+  // Clear previous content
+  searchHistory.innerHTML = '';
+
+  for (let i = 0; i < searchedCities.length; i++) {
+    const searchedCity = searchedCities[i];
+    const searchHistoryEl = document.createElement('h4');
+    searchHistoryEl.textContent = searchedCity;
     searchHistory.appendChild(searchHistoryEl);
+    // FIXME: the cityname rendering multiple times.
   }
 
+  
   // Convert Kelvin to Degree Celsius and round off
   const degreeCelsius = kelvin - 273.15;
   const temperature = Math.round(degreeCelsius);
