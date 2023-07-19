@@ -44,6 +44,16 @@ function renderWeatherData(data) {
   //Add the city name as a placeholder on inputEl
   inputEl.placeholder = city;
 
+  //add city to seach History if it does not already exist.
+  const searchHistory = document.querySelector('.searchHistory');
+  const searchHistoryEl = document.createElement('H4');
+  const cityName = Array.from(searchHistoryEl.querySelectorAll('H4')).map(el => el.textContent);
+
+  if (!cityName.includes(city)) {
+    searchHistoryEl.textContent = city;
+    searchHistory.appendChild(searchHistoryEl);
+  }
+
   // Convert Kelvin to Degree Celsius and round off
   const degreeCelsius = kelvin - 273.15;
   const temperature = Math.round(degreeCelsius);
