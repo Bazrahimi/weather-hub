@@ -2,6 +2,11 @@
 
 Weather Hub is a web application that allows users to search for the current weather and a 5-day forecast of a city. It utilizes the OpenWeatherMap API to fetch weather data and displays it in a user-friendly interface.
 
+##Demo
+
+- [GitHub Repository](https://github.com/Bazrahimi/weather-hub)
+- [Live Demo](https://bazrahimi.github.io/weather-hub/)
+
 ![Weather Hub Screenshot](./assets/image/Screenshot%202023-07-19%20at%2011.39.21%20am.png)
 
 ## Features
@@ -16,7 +21,4 @@ Weather Hub is a web application that allows users to search for the current wea
 
 - Default city (Melbourne) is displayed if no coordinates are found in localStorage
 
-## Demo
-
-A live demo of the Weather Hub application is available [here](https://bazrahimi.github.io/weather-hub/).
 
