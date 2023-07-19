@@ -71,40 +71,27 @@ function renderWeatherData(data) {
   selectedCityWeather.style.display = "block";
 }
 
-  //Get the existing searched cities from localStorage or initialize an empty array
-  let searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
-  function addToSearchHistory(city) {
-    if(!searchedCities.includes(city)) {
-      searchedCities.push(city);
-      localStorage.setItem('searchedCities', JSON.stringify(searchedCities));
-      appendToSearchHistory();
-
-    }
+//Get the existing searched cities from localStorage or initialize an empty array
+let searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
+function addToSearchHistory(city) {
+  if(!searchedCities.includes(city)) {
+    searchedCities.push(city);
+    localStorage.setItem('searchedCities', JSON.stringify(searchedCities));
+    appendToSearchHistory();
   }
+}
 
-  function appendToSearchHistory() {
-    searchHistory.innerHTML = ';'
-    const localStorageArray = JSON.parse(localStorage.getItem('searchedCities'));
-    if (localStorageArray && localStorageArray.length > 0) {
-      localStorageArray.forEach(cityName => {
-        const searchHistoryEl = document.createElement('h4');
-        searchHistoryEl.textContent = cityName;
-        searchHistory.appendChild(searchHistoryEl);
-      });
-    }
+function appendToSearchHistory() {
+  searchHistory.innerHTML = '';
+  const localStorageArray = JSON.parse(localStorage.getItem('searchedCities'));
+  if (localStorageArray && localStorageArray.length > 0) {
+    localStorageArray.forEach(cityName => {
+      const searchHistoryEl = document.createElement('h4');
+      searchHistoryEl.textContent = cityName;
+      searchHistory.appendChild(searchHistoryEl);
+    });
   }
-
-  
-  
-  
-  
-  
-  
-  
-
-
-
-  
+}
 
 // Function to render 5-day forecast weather
 function renderForecastData(data) {
@@ -149,16 +136,15 @@ function renderForecastData(data) {
 
     // Append the forecast item element to the forecast container
     forecastDiv.appendChild(forecastItemEl);
-  
   });
 }
 
-//event listener for selected-city section
+// Event listener for selected-city section
 selectedCitySection.addEventListener('click', function(event) {
   if (event.target.tagName === 'H4') {
     const city = event.target.textContent;
 
-    //call api to get the latitude and longitude
+    // Call API to get the latitude and longitude
     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`)
     .then(response => response.json())
     .then(function(geodata) {
@@ -171,12 +157,10 @@ selectedCitySection.addEventListener('click', function(event) {
   }
 });
 
+// Event listener for search button
 searchBtn.addEventListener('click', function() { 
   const city = inputEl.value;
-  addToSearchHistory(city);
-  
-
-
+ 
   fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`)
     .then(response => response.json())
     .then(function(geodata) {
@@ -196,18 +180,29 @@ searchBtn.addEventListener('click', function() {
     });
 });
 
-//set Melbourne as the default city if no co-ordinate exist in LocalStorage.
+// Set Melbourne as the default city and add two cities to localStorage when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-  //check if latitude and longitude exist and localStorage
   const latitude = localStorage.getItem('latitude');
   const longitude = localStorage.getItem('longitude');
+
+  // Add two cities to the searchedCities array in localStorage if they don't already exist
+  let searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
+  const citiesToAdd = ['Melbourne', 'Sydney'];
+  citiesToAdd.forEach(city => {
+    if (!searchedCities.includes(city)) {
+      searchedCities.push(city);
+    }
+  });
+  localStorage.setItem('searchedCities', JSON.stringify(searchedCities));
+
+  // Call appendToSearchHistory to display the search history
+  appendToSearchHistory();
 
   if (latitude && longitude) {
     fetchApi(latitude, longitude);
   } else {
-      const latitude = '-37.8142';
-      const longitude = '144.9632';
-      fetchApi(latitude, longitude);
+    const defaultLatitude = '-37.8142';
+    const defaultLongitude = '144.9632';
+    fetchApi(defaultLatitude, defaultLongitude);
   }
-
 });
