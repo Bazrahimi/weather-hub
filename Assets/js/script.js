@@ -8,6 +8,7 @@ const windDiv = document.getElementById('wind');
 const humidityDiv = document.getElementById('humidity');
 const forecastDiv = document.getElementById('days');
 const selectedCitySection = document.getElementById('selected-city');
+const searchHistory = document.querySelector('.searchHistory');
 
 // Add API Key
 const apiKey = "9d289b87c3721d7d57fae4326e6dad30";
@@ -43,29 +44,10 @@ function renderWeatherData(data) {
 
   //Add the city name as a placeholder on inputEl
   inputEl.placeholder = city;
-  // Push the city name to the cityNames array and save it in localStorage
-  let cityNames = JSON.parse(localStorage.getItem('cityNames')) || [];
-  cityNames.push(city);
-  localStorage.setItem('cityNames', JSON.stringify(cityNames));
+  const cityName = city;
+  addToSearchHistory(cityName);
 
-  // Retrieve the cityNames array from localStorage
-  const searchedCities = JSON.parse(localStorage.getItem('cityNames'));
 
-  // Display each searched city in the search history element.
-  const searchHistory = document.querySelector('.searchHistory');
-
-  // Clear previous content
-  searchHistory.innerHTML = '';
-
-  for (let i = 0; i < searchedCities.length; i++) {
-    const searchedCity = searchedCities[i];
-    const searchHistoryEl = document.createElement('h4');
-    searchHistoryEl.textContent = searchedCity;
-    searchHistory.appendChild(searchHistoryEl);
-    // FIXME: the cityname rendering multiple times.
-  }
-
-  
   // Convert Kelvin to Degree Celsius and round off
   const degreeCelsius = kelvin - 273.15;
   const temperature = Math.round(degreeCelsius);
@@ -88,6 +70,41 @@ function renderWeatherData(data) {
 
   selectedCityWeather.style.display = "block";
 }
+
+  //Get the existing searched cities from localStorage or initialize an empty array
+  let searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
+  function addToSearchHistory(city) {
+    if(!searchedCities.includes(city)) {
+      searchedCities.push(city);
+      localStorage.setItem('searchedCities', JSON.stringify(searchedCities));
+      appendToSearchHistory();
+
+    }
+  }
+
+  function appendToSearchHistory() {
+    searchHistory.innerHTML = ';'
+    const localStorageArray = JSON.parse(localStorage.getItem('searchedCities'));
+    if (localStorageArray && localStorageArray.length > 0) {
+      localStorageArray.forEach(cityName => {
+        const searchHistoryEl = document.createElement('h4');
+        searchHistoryEl.textContent = cityName;
+        searchHistory.appendChild(searchHistoryEl);
+      });
+    }
+  }
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+  
 
 // Function to render 5-day forecast weather
 function renderForecastData(data) {
@@ -156,6 +173,9 @@ selectedCitySection.addEventListener('click', function(event) {
 
 searchBtn.addEventListener('click', function() { 
   const city = inputEl.value;
+  addToSearchHistory(city);
+  
+
 
   fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`)
     .then(response => response.json())
