@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add two cities to the searchedCities array in localStorage if they don't already exist
   let searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
-  const citiesToAdd = ['Melbourne', 'Sydney'];
+  const citiesToAdd = ['Melbourne'];
   citiesToAdd.forEach(city => {
     if (!searchedCities.includes(city)) {
       searchedCities.push(city);

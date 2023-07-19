@@ -21,4 +21,28 @@ Weather Hub is a web application that allows users to search for the current wea
 
 - Default city (Melbourne) is displayed if no coordinates are found in localStorage
 
+## Installation
+This is a browser-based application. The code consists of the following files:
 
+- `index.html`: Contains the structure of the webpage.
+- `Assets/css/style.css`: Provides styling for the
+- `Assets/css/rest.st` : CSS Reset
+- `Assets/css/normalize.css`: CSS Normalize
+webpage.
+- `Assets/script.js`: Implements the interactivity of the app.
+
+## Usage
+
+Feel free to use this code as a starter for your own webpage. You can customize the design by modifying the HTML, CSS, and JavaScript files.
+
+
+## Credits
+
+- Starter code: [https://github.com/coding-boot-camp/urban-octo-telegram.git](https://github.com/coding-boot-camp/urban-octo-telegram.git)
+- Zoom Recording: [https://applications.zoom.us/lti/rich/home/recording/detail](https://applications.zoom.us/lti/rich/home/recording/detail)
+
+## License
+
+The code is released under the MIT License. Feel free to use, modify, and distribute it.
+
+---
