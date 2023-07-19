@@ -7,7 +7,7 @@ Weather Hub is a web application that allows users to search for the current wea
 - [GitHub Repository](https://github.com/Bazrahimi/weather-hub)
 - [Live Demo](https://bazrahimi.github.io/weather-hub/)
 
-![Weather Hub Screenshot](./assets/image/Screenshot%202023-07-19%20at%2011.39.21%20am.png)
+![Weather Hub Screenshot](./Assets/image/Screenshot%202023-07-19%20at%2011.39.21%20am.png)
 
 ## Features
 
